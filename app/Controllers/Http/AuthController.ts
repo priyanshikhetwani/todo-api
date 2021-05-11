@@ -24,11 +24,14 @@ export default class AuthController {
     }
 
     public async login({request, response, auth}:HttpContextContract ){
+        console.log(request);
+        
         const email = request.input('email')
         const password = request.input('password')
         const token = await auth.attempt(email, password)
+        const Token =  token.toJSON()
 
-        return token.toJSON()
+        return response.status(200).send(Token)
 
     }
 }

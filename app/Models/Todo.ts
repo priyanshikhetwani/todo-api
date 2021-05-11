@@ -1,10 +1,15 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, computed } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, belongsTo, column, computed, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import authConfig from 'Config/auth'
+import User from './User'
+
 
 export default class Todo extends BaseModel {
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public user_id:number
 
   @column()
   public title:string
@@ -18,8 +23,10 @@ export default class Todo extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true, serialize: (value:DateTime)=> value.toFormat('yyyy LLL dd') })
   public updatedAt: DateTime
 
-  // @computed()
-  // public get user(){
-  //   return 'priyanshi'
-  // }
+
+
+  @belongsTo(()=> User, {
+    // localKey: 'user_id'
+  })
+  public user: BelongsTo<typeof User>
 }
