@@ -9,7 +9,7 @@ export default class Todo extends BaseModel {
   public id: number
 
   @column()
-  public user_id:number
+  public userId:number
 
   @column()
   public title:string

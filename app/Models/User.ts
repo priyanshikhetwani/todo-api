@@ -37,11 +37,12 @@ export default class User extends BaseModel {
       user.password = await Hash.make(user.password)
     }
   }
-
-  @hasMany(()=> Todo, {
-    foreignKey: 'user_id'
-  })
-  public todo: HasMany<typeof Todo>
+@hasMany(() => Todo)
+  public todos: HasMany<typeof Todo>
+  // @hasMany(()=> Todo, {
+  //   foreignKey: 'user_id'
+  // })
+  // public todo: HasMany<typeof Todo>
   
   
 }

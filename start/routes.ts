@@ -25,10 +25,15 @@ Route.get('/', 'HomeController.index')
 Route.group(()=>{
 
 Route.group(()=>{
+  Route.post('/logout', 'AuthController.destroy')
+  Route.post('/user', 'AuthController.user')
   Route.get('/todo', 'TodosController.index')
   Route.post('/todo', 'TodosController.store')
-  Route.patch('/todo/:id', 'TodosController.update')
-  Route.delete('/todo/:id', 'TodosController.destroy')
+  Route.post('/updatetodo', 'TodosController.update')
+  Route.post('/undoupdate', 'TodosController.undoupdate')
+  Route.post('/delete', 'TodosController.destroy')
+  // //Route.patch('/todo/:id', 'TodosController.update')
+ // // Route.delete('/todo/:id', 'TodosController.destroy')
 }).middleware('auth')
 
   Route.post('/register', 'AuthController.register')
